@@ -253,13 +253,10 @@ Starting from the `lakers` dataset, create a new dataset called `gasol_hookshots
 gasol_hookshots <- lakers %>% 
   filter(player == "Pau Gasol", type == "hook") %>% 
   mutate(date_new= ymd(date)) %>% 
-  mutate(month_new= month(date_new))
- 
+  mutate(month_new= month(date_new)) %>% 
+  count(month= month_new)
 
-gasol_hookshots_by_month <- gasol_hookshots %>% 
-  group_by(type, month_new) %>% 
-  summarize(total_number_hookshots = count(month_new))
-
+gasol_hookshots
 ```
 
 ### 4. `dplyr::case_when()`
